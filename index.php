@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+include('verifier.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +36,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-folder"></i>
                 </div>
@@ -43,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -53,7 +58,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -66,7 +71,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
+                        <?php if($_SESSION['user']['role']==0||$_SESSION['user']['role']==2){?>
                         <a class="collapse-item" href="index.php?pages=newsous">Nouvelle Souscription </a>
+                        <?php } ?>
                         <a class="collapse-item" href="index.php?pages=sousEttente">Souscription En attante</a>
                         <a class="collapse-item" href="index.php?pages=sousValide">Souscription Validée</a>
                        </div>
@@ -84,11 +91,32 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">:</h6>
+                        <?php if($_SESSION['user']['role']==0||$_SESSION['user']['role']==2){?>
                         <a class="collapse-item" href="index.php?pages=newEmp">Nouveau</a>
+                        <?php }?>
                         <a class="collapse-item" href="index.php?pages=listeEmp">Liste des employées</a>
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.php?pages=cl"
+                    aria-expanded="true" aria-controls="collapscl">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Clients</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
+            <a class="nav-link collapsed" href="index.php?pages=veh"
+                    aria-expanded="true" aria-controls="collapveh">
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Véhicules</span>
+                </a>
+                
+                
+            </li>
+
+
 
             <!-- Divider -->
             
@@ -118,18 +146,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -144,16 +161,7 @@
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                  
                                 </form>
                             </div>
                         </li>
@@ -164,7 +172,10 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter" id="alertsous">
+
+
+                                </span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -172,39 +183,10 @@
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
+                                <div id="alertSous2">
+                                
+                                </div>
+                                    
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
@@ -218,29 +200,24 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php echo $_SESSION['user']['nom_emp'] ?>&nbsp;<?php echo $_SESSION['user']['prenom_emp'] ?>(<?php if($_SESSION['user']['role']==0) echo 'Admin'; else if($_SESSION['user']['role']==1) echo 'Personnel SOCABU'; else echo 'Personnel RNP'  ?>)</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
+                             
+                                <a class="dropdown-item" href="index.php?pages=param">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    Paramètres
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+                              
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                  Déconnexion
                                 </a>
                             </div>
                         </li>
@@ -292,15 +269,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">voulez-vous vraiment vous déconnecter ?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selectionner "Deconnecter" si tu veux te deconnecter.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Quitter</button>
+                    <a class="btn btn-primary" href="logout.php">Déconnecter</a>
                 </div>
             </div>
         </div>
@@ -333,3 +310,59 @@
 </body>
 
 </html>
+
+<script>
+var delayInMilliseconds = 1000; //1 second
+
+setInterval(function() {
+  //your code to be executed after 1 second
+  $.ajax({
+   
+    url: "pages/ajax/ajaxpendingsous.php",
+    success: function (response) {
+     $('#alertsous').html(response)  
+    }
+  });
+
+  $.ajax({
+   
+   url: "pages/ajax/ajaxpendingsous2.php",
+   success: function (data) {
+    $('#alertSous2').html(data)  
+   }
+ });
+
+ $.ajax({
+   
+   url: "pages/ajax/dash1.php",
+   success: function (data) {
+    $('#dash1').html(data)  
+   }
+ });
+
+ $.ajax({
+   
+   url: "pages/ajax/dash2.php",
+   success: function (data) {
+    $('#dash2').html(data)  
+   }
+ });
+ $.ajax({
+   
+   url: "pages/ajax/dash3.php",
+   success: function (data) {
+    $('#dash3').html(data)  
+   }
+ });
+ $.ajax({
+   
+   url: "pages/ajax/dash4.php",
+   success: function (data) {
+    $('#dash4').html(data)  
+   }
+ });
+
+}, delayInMilliseconds);
+</script>
+
+

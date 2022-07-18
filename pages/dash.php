@@ -1,7 +1,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
                     </div>
 
                     <!-- Content Row -->
@@ -15,7 +15,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Souscription En Attente</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dash1">0</div>
                                         </div>
                                         <div class="col-auto">
                                         </div>
@@ -32,7 +32,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Souscription validé</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dash2">0</div>
                                         </div>
                                         <div class="col-auto">
                                         </div>
@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">15</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="dash3">0</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
@@ -77,7 +77,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Employés connectés</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dash4">0</div>
                                         </div>
                                         <div class="col-auto">
                                         </div>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,31 +41,34 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenue</h1>
                                     </div>
-                                    <form class="user">
+                                    <div class="text-center alert-danger">
+                                        <h1 class="h4 text-gray-900 mb-4"><?php echo @$_SESSION['error']; ?></h1>
+                                    </div>
+                                    <form class="user" method="POST" action="auth.php">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" name="mail" required class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="login...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="pass" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                       
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
-                                        <hr>
+                                       <center>
+                                        <button class="btn btn-primary btn-sm" name="log" type="submit">Connexion</button>
+                                        </center>
                                        
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.php">mot de passe oublier?</a>
-                                    </div>
-                                    
+                               
+                                      
                                 </div>
                             </div>
+                        <div class="col-6">
+                            <img src="post.png" alt="" srcset="">
+                            <img src="soc.jpg" alt="" srcset="">
                         </div>
+                        </div>
+                        <hr>   
                     </div>
                 </div>
 
